@@ -1,6 +1,6 @@
 $(function() {
     var fadeTimer = 150;
-    var typeTimer = 400;
+    var typeTimer = 700;
     var userColorChoices = ['red', 'orange', 'yello', 'green', 'blue', 'purple'];
     var $window = $(window);
     var $usernameInput = $('.usernameInput');
@@ -18,7 +18,7 @@ $(function() {
     function addParticipantsMessage (data) {
       var message = '';
       if (data.numUsers === 1) {
-        message += "You are the only one in the chat, :( invite some friends, if you have any";
+        message += "You are the only one in the chat";
       } else {
         message += "There are " + data.numUsers + " people in the chat room";
       }
@@ -62,7 +62,7 @@ $(function() {
         .css('color', getUsernameColor(data.username));
       var $messageBodyDiv = $('<span class="messageBody">')
         .text(": " + data.message);
-      var typingClass = data.typing ? 'typing' : '';
+      var typingClass = data.typing ? 'loading' : '';
       var $messageDiv = $('<li class="message"/>')
         .data('username', data.username)
         .addClass(typingClass)
@@ -71,7 +71,7 @@ $(function() {
     }
     function addChatTyping (data) {
       data.typing = true;
-      data.message = '...';
+      data.message = '';
       addChatMessage(data);
     }
     function removeChatTyping (data) {
@@ -121,7 +121,7 @@ $(function() {
       }
     }
     function getTypingMessages (data) {
-      return $('.typing.message').filter(function (i) {
+      return $('.loading.message').filter(function (i) {
         return $(this).data('username') === data.username;
       });
     }
@@ -192,4 +192,3 @@ $(function() {
       log('attempt to reconnect has failed');
     });
   });
-  
