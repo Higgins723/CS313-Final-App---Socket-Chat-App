@@ -5,6 +5,7 @@ $(function() {
     var $window = $(window);
     var $usernameInput = $('.usernameInput');
     var $messages = $('.messages');
+    var $data = $('#data');
     var $inputMessage = $('.inputMessage');
     var $loginPage = $('.login.page');
     var $chatPage = $('.chat.page');
@@ -62,7 +63,7 @@ $(function() {
         .css('color', getUsernameColor(data.username));
       var $messageBodyDiv = $('<span class="messageBody">')
         .text(": " + data.message);
-      var typingClass = data.typing ? 'loading' : '';
+      var typingClass = data.typing ? 'loading messageBody' : '';
       var $messageDiv = $('<li class="message"/>')
         .data('username', data.username)
         .addClass(typingClass)
@@ -80,6 +81,7 @@ $(function() {
       });
     }
     function addMessageElement (el, options) {
+      scrollToBottom();
       var $el = $(el);
       if (!options) {
         options = {};
@@ -98,7 +100,7 @@ $(function() {
       } else {
         $messages.append($el);
       }
-      $messages[0].scrollTop = $messages[0].scrollHeight;
+      $data[0].scrollTop = $data[0].scrollHeight;
     }
     function cleanInput (input) {
       return $('<div/>').text(input).html();
@@ -191,4 +193,9 @@ $(function() {
     socket.on('reconnect_error', function () {
       log('attempt to reconnect has failed');
     });
+
+    function scrollToBottom() {
+      var elem = document.getElementById('data');
+      elem.scrollTop = elem.scrollHeight;
+    }
   });

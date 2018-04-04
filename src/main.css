@@ -59,7 +59,7 @@ ul {
 }
 
 .loading {
-  font-size: 30px;
+  /* font-size: 30px; */
 }
 
 .loading:after {
@@ -82,4 +82,10 @@ ul {
   to {
     width: 1.25em;
   }
+}
+
+#data {
+  overflow-x: hidden;
+  overflow-y: visible;
+  height: 300px;
 }
