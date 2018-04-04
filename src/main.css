@@ -89,3 +89,7 @@ ul {
   overflow-y: visible;
   height: 300px;
 }
+
+.messageBody {
+  word-wrap: break-word;
+}
