@@ -20,7 +20,7 @@ io.on('connection', function (socket) {
   socket.on('add user', function (username) {
     if (!addedUser) {
       socket.username = username;
-      numUsers = numUsers += 1;
+      numUsers += 1;
       addedUser = true;
       socket.emit('login', {
         username: socket.username,
@@ -44,7 +44,7 @@ io.on('connection', function (socket) {
   });
   socket.on('disconnect', function () {
     if (addedUser) {
-      numUsers = numUsers - 1;
+      numUsers -= 1;
       socket.broadcast.emit('user left', {
         username: socket.username,
         numUsers: numUsers
